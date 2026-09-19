@@ -2,8 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { HttpStatus } from "../../core/types/http-statuses";
 import { jwtService, usersRepository } from "../../core/composition/composition-root";
 
-//!! мидлвар надо перписывать на классы
-//как передать адптер
+
 export const bearerAuthGuardMiddleware = async (
   req: Request,
   res: Response,
@@ -26,6 +25,7 @@ export const bearerAuthGuardMiddleware = async (
   if (!user) {
     return res.sendStatus(HttpStatus.Unauthorized);
   }
+
   req.user = {
     id: user.id,
     login: user.login,
